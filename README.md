@@ -12,8 +12,11 @@ Bus Ticket Project [CRUD]
 `<github>`:<https://git-scm.com/download/win>
 ### ติดตั้ง Python pip
 > พิมพ์ใน CMD
+
 > `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
+
 > `python get-pip.py`
+
 ## เข้า vs code
 ### กด Ctrl+Shift+P
 > `git Clone https://github.com/Audywb/bus-ticket.git`
