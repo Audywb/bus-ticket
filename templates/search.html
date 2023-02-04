@@ -1,0 +1,139 @@
+{% extends "base_layout.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-4">
+    <div class="row">
+        <div class="col-4 offset-1">
+            <div class="mt-4">
+                <a href="/" class="top-text text-decoration-none">BUTPALUCK</a>
+            </div>
+        </div>
+        <div class="col-4 offset-1">
+            <div class="mt-5 text-center">
+                <h1>ค้นหาเที่ยวรถ</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row mt-5">
+        <div class="col-lg-5">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <h3>เลื่อนตั๋ว</h3>
+                            <form action="">
+                                <input type="number" id="quantity" name="ticket-no-1" class="form-control mt-4"
+                                    placeholder="กรอกเลขที่ตั๋ว">
+                                <button type="submit" class="btn btn-primary btn-lg mt-4">ยืนยัน</button>
+                            </form>
+                            <br>
+                            <br>
+                            <p class="mt-5 text-danger">*กรณีเลื่อนตั๋วต้องจ่ายเพิ่ม 30%</p>
+                        </div>
+                        <div class="vl col-1"></div>
+                        <div class="col-5 text-center">
+                            <h3>คืนตั๋ว</h3>
+                            <form action="">
+                                <input type="number" id="quantity" name="ticket-no-2" class="form-control mt-4"
+                                    placeholder="กรอกเลขที่ตั๋ว">
+                                <button type="submit" class="btn btn-primary btn-lg mt-4">ยืนยัน</button>
+                            </form>
+                            <br>
+                            <br>
+                            <p class="mt-5 text-danger" style="margin-left: -40px;">*กรณีคืนตั๋วจ่ายคืนเพียง 70%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-end">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <div class="form-check form-check-inline">
+                        <h4>เดินทาง</h4>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="radio" name="select" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">เที่ยวเดียว</label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="radio" name="select" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">ไป-กลับ</label>
+                    </div>
+                    <form class="row mx-3">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="start" class="col-form-label">ต้นทาง</label>
+                                </div>
+                                <div class="col-8 d-flext">
+                                    <select class="form-select" aria-label=".form-select-sm example" name="start"
+                                        required>
+                                        <option selected disabled>เลือก</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="start" class="col-form-label">ปลายทาง</label>
+                                </div>
+                                <div class="col-8">
+                                    <select class="form-select" aria-label=".form-select-sm example" name="end">
+                                        <option selected disabled>เลือก</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8 mt-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="calendar" class="col-form-label">ออกเดินทาง</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="date" class="form-control" id="calendar" placeholder="วันที่ออกเดินทาง"
+                                        name="calendar-start">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8 mt-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="calendar2" class="col-form-label">เดินทางกลับ</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="date" class="form-control" id="calendar2" placeholder="เดินทางกลับ"
+                                        name="calendar-return">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8 mt-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="quantity" class="col-form-label">จำนวนผู้เดินทาง</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" id="quantity" name="cout-people" class="form-control"
+                                        placeholder="จำนวนผู้เดือนทาง">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center mt-4">
+                            <button type="button" class="btn btn-primary btn-lg">จองตั๋ว</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

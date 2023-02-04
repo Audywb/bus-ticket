@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+body,
+html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.bg {
+    font-family: 'Itim', cursive;
+
+    background-image: url('../images/bg2.jpg');
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.top-text {
+    color: rgb(54, 8, 98);
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: 'Itim', cursive;
+    text-shadow: 2px 2px #717171;
+}
+
+.parent button {
+    background-color: #48abe0;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 38px;
+    height: 180px;
+    width: 180px;
+    box-shadow: 0 2px 4px darkslategray;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.parent button:active {
+    background-color: #48abe0;
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+}
+
+.parent button:hover {
+    background-color: #2e92c8;
+    transform: translateY(2px);
+}
+
+.parent button:not(:first-child) {
+    margin-top: 10px;
+}
+
+.round-6 {
+    border-radius: 70%;
+}
