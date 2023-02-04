@@ -20,11 +20,15 @@ python get-pip.py
 git Clone https://github.com/Audywb/bus-ticket.git
 
 //ติดตั้ง Library python
+```python
 pip install -r requirements.txt
+```
 
 //ถ้าติดตั้งข้างบนเสร็จแล้วครั้งต่อไปใช้แค่ RUN
 # RUN
+```python
 python app.py
+```
 
 # Update Code
 git pull
