@@ -1,0 +1,96 @@
+{% extends "base_layout.html" %}
+{% block title %}Select time{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-lg-4">
+    <div class="row">
+        <div class="col-lg-4 offset-1">
+            <div class="mt-4">
+                <a href="/" class="top-text text-decoration-none">BUTPALUCK</a>
+            </div>
+        </div>
+        <div class="col-lg-4 offset-1">
+            <div class="mt-5 text-lg-center">
+                <h1>เลือกเวลาเดินทาง</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row mt-5">
+        <div class="col-lg-10 offset-1">
+            <div class="card"
+                style="width: 100%; background-image: linear-gradient(to bottom right, #FF61D2, #FE9090);">
+                <div class="card-body">
+                    <h3 class="card-title text-center fw-bold">เที่ยวไป</h3>
+                    <h4 class="card-title">เลือกเวลารถออกจาก {{start}}</h4>
+                    <table class="table table-striped table-hover table-bordered table-primary text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">เวลารถออก</th>
+                                <th scope="col">จำนวนที่นั่งว่าง</th>
+                                <th scope="col">ราคา</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in around_bus_start %}
+                            <tr>
+                                <td>{{ item['start_time'].strftime('%H:%M') }}</td>
+                                <td>{{ item['count_seat'] }}</td>
+                                <td>{{ item['price'] }}</td>
+                                <form method="POST"
+                                    action="{{ url_for('select_time', id=id, time_im=item['start_time'].strftime('%H:%M'), r_time='0') }}">
+                                    <td>
+                                        <button type="submit" class="btn btn-primary btn-lg">ตกลง</button>
+                                    </td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                            <tr class="text-start">
+                                <td colspan="3">ออกเดินทางเวลา: {{start_date}} </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="mx-1">*กรณีไม่ได้เลือกเวลา ค่าเริ่มต้นจะเป็น 18.00 น.</p>
+                    {% if option == 'option2' %}
+                    <h3 class="card-title text-center fw-bold">เที่ยวกลับ</h3>
+                    <h4 class="card-title">เลือกเวลารถออกจาก {{end}}</h4>
+                    <table class="table table-striped table-hover table-bordered table-primary text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">เวลารถออก</th>
+                                <th scope="col">จำนวนที่นั่งว่าง</th>
+                                <th scope="col">ราคา</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in around_bus_end %}
+                            <tr>
+                                <td>{{ item['start_time'].strftime('%H:%M') }}</td>
+                                <td>{{ item['count_seat'] }}</td>
+                                <td>{{ item['price'] }}</td>
+                                <form method="POST"
+                                    action="{{ url_for('select_time', id=id, time_im='0', r_time=item['start_time'].strftime('%H:%M')) }}">
+                                    <td>
+                                        <button type="submit" class="btn btn-primary btn-lg">ตกลง</button>
+                                    </td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                            <tr class="text-start">
+                                <td colspan="3">ออกเดินทางเวลา: {{end_date}}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="mx-1">*กรณีไม่ได้เลือกเวลา ค่าเริ่มต้นจะเป็น 18.00 น.</p>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
