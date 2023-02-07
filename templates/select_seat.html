@@ -1,0 +1,94 @@
+{% extends "base_layout.html" %}
+{% block title %}Select seat{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-lg-4">
+    <div class="row">
+        <div class="col-lg-4 offset-1">
+            <div class="mt-4">
+                <a href="/" class="top-text text-decoration-none">BUTPALUCK</a>
+            </div>
+        </div>
+        <div class="col-lg-4 offset-1">
+            <div class="mt-5 text-lg-center">
+                <h1>เลือกที่นั่ง</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row mt-5">
+        <div class="col-lg-10 offset-1">
+            <div class="card"
+                style="width: 100%; background-image: linear-gradient(to bottom right, #FF61D2, #FE9090);">
+                <div class="card-body">
+                    <form action="{{ url_for('selected_seat', id=id) }}" method="post">
+                        <h3 class="card-title text-center fw-bold">เลือกที่นั่งเที่ยวไป {{
+                            around_bus_start['station_name'] }}</h3>
+                        <p class="card-title">จำนวนผู้โดยสาร: {{ people }}</p>
+                        <p class="card-title">*กรณีเลือกที่นั่งเกินจำนวน {{ people }} ที่นั่ง
+                            ระบบจะเลือกที่นั่งด้านหน้าสุดให้อัตโนมัติ</p>
+                        <hr>
+                        <div class="row">
+                            <h4 class="card-title text-center text-muted">ด้านหน้ารถ</h4>
+                            {% for i in range(around_bus_start['count_seat']) %}
+                            <div class="col-2 offset-1">
+                                <div class="form-check mb-3">
+                                    {% if around_bus_start['backup_seat'][i] != i+1 %}
+                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}"
+                                        id="flexCheckDefault" disabled name="seat_start">
+                                    {% elif around_bus_start['backup_seat'][i] != 0 and i+1 in people_check_s %}
+                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}"
+                                        id="flexCheckDefault" name="seat_start" checked>
+                                    {% else %}
+                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}"
+                                        id="flexCheckDefault" name="seat_start">
+                                    {% endif %}
+                                    <label class="form-check-label mt-2" for="flexCheckDefault">
+                                        {{i+1}}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if option == 'option2' %}
+                        <hr>
+                        <h3 class="card-title text-center fw-bold">เลือกที่นั่งเที่ยวกลับ {{
+                            around_bus_end['station_name'] }}</h3>
+                        <p class="card-title">จำนวนผู้โดยสาร: {{ people }}</p>
+                        <!-- <p class="card-title">*กรณีเลือกที่นั่งเกินจำนวน {{ people }} ที่นั่ง
+                            ระบบจะเลือกที่นั่งด้านหน้าสุดให้อัตโนมัติ</p> -->
+                        <hr>
+                        <div class="row">
+                            <h4 class="card-title text-center text-muted">ด้านหน้ารถ</h4>
+                            {% for i in range(around_bus_end['count_seat']) %}
+                            <div class="col-2 offset-1">
+                                <div class="form-check mb-3">
+                                    {% if around_bus_end['backup_seat'][i] != i+1 %}
+                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}"
+                                        id="flexCheckDefault" disabled name="seat_end">
+                                    {% elif around_bus_end['backup_seat'][i] != 0 and i+1 in people_check_e %}
+                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}" checked name="seat_end">
+                                    {% else %}
+                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}"
+                                        id="flexCheckDefault" name="seat_end">
+                                    {% endif %}
+                                    <label class="form-check-label mt-2" for="flexCheckDefault">
+                                        {{i+1}}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {% endif %}
+                        <hr>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg pd-2">ตกลง</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

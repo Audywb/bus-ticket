@@ -1,0 +1,49 @@
+{% extends "base_layout.html" %}
+{% block title %}Select seat{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-lg-4">
+    <div class="row">
+        <div class="col-lg-4 offset-1">
+            <div class="mt-4">
+                <a href="/" class="top-text text-decoration-none">BUTPALUCK</a>
+            </div>
+        </div>
+        <div class="col-lg-4 offset-1">
+            <div class="mt-5 text-lg-center">
+                <h1>คืนตั๋ว</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row mt-2 justify-content-center">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-1 mb-2">
+                    <div class="card border-white border-4 shadow"
+                        style="width: 100%; background-image: linear-gradient(to bottom right, #FF61D2, #FE9090);">
+                        <div class="card-body">
+                            <p class="card-title fs-5">หมายเลขการจอง: {{no}}</p>
+                            <form action="{{ url_for('home') }}">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">ชื่อ-นามสกุล</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="ชื่อ-นามสกุล" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="n_phone" class="form-label">เลขที่บัญชี</label>
+                                    <input type="text" class="form-control" id="n_phone" name="pay_number"
+                                        placeholder="เลขที่บัญชี" required>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-danger pd-2">ยืนยัน</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

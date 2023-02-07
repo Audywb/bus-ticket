@@ -39,7 +39,7 @@
                                 <td>{{ item['count_seat'] }}</td>
                                 <td>{{ item['price'] }}</td>
                                 <form method="POST"
-                                    action="{{ url_for('select_time', id=id, time_im=item['start_time'].strftime('%H:%M'), r_time='0') }}">
+                                    action="{{ url_for('select_time', id=id, time_im=item['start_time'].strftime('%H:%M'), r_time='0', start_id=item['_id'], end_id=0) }}">
                                     <td>
                                         <button type="submit" class="btn btn-primary btn-lg">ตกลง</button>
                                     </td>
@@ -72,7 +72,7 @@
                                 <td>{{ item['count_seat'] }}</td>
                                 <td>{{ item['price'] }}</td>
                                 <form method="POST"
-                                    action="{{ url_for('select_time', id=id, time_im='0', r_time=item['start_time'].strftime('%H:%M')) }}">
+                                    action="{{ url_for('select_time', id=id, time_im='0', r_time=item['start_time'].strftime('%H:%M'),start_id=0, end_id=item['_id']) }}">
                                     <td>
                                         <button type="submit" class="btn btn-primary btn-lg">ตกลง</button>
                                     </td>
@@ -88,6 +88,7 @@
                     <p class="mx-1">*กรณีไม่ได้เลือกเวลา ค่าเริ่มต้นจะเป็น 18.00 น.</p>
                     {% else %}
                     {% endif %}
+                    <a href="{{ url_for('select_seat', id=id) }}" class="btn btn-primary d-flex justify-content-center">ต่อไป</a>
                 </div>
             </div>
         </div>

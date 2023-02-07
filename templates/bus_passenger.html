@@ -1,0 +1,82 @@
+{% extends "base_layout.html" %}
+{% block title %}Select seat{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-lg-4">
+    <div class="row">
+        <div class="col-lg-4 offset-1">
+            <div class="mt-4">
+                <a href="/" class="top-text text-decoration-none">BUTPALUCK</a>
+            </div>
+        </div>
+        <div class="col-lg-4 offset-1">
+            <div class="mt-5 text-lg-center">
+                <h1>ข้อมูลผู้โดยสาร</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row mt-5">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-1 mb-2">
+                    <div class="card border-white border-4 shadow"
+                        style="width: 100%; background-image: linear-gradient(to bottom right, #FF61D2, #FE9090);">
+                        <div class="card-body">
+                            <form action="{{ url_for('payment', id=ticket['_id']) }}" method="post">
+                                <h3 class="card-title text-center fw-bold">ข้อมูลผู้โดยสาร</h3>
+                                <div class="mb-3">
+                                    <label for="card_id" class="form-label">เลขที่บัตรประชาชน</label>
+                                    <input type="text" class="form-control" id="card_id" name="card_id"
+                                        placeholder="เลขที่บัตรประชาชน" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">ชื่อ-นามสกุล</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="ชื่อ-นามสกุล">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="n_phone" class="form-label">เบอร์โทรศัพท์มือถือ</label>
+                                    <input type="text" class="form-control" id="n_phone" name="phone_number"
+                                        placeholder="เบอร์โทรศัพท์มือถือ">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">อีเมล</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-danger pd-2">ยืนยัน</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card border-white border-4 shadow"
+                        style="width: 100%; background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));">
+                        <div class="card-body">
+                            <h3 class="card-title text-center fw-bold">ข้อมูลการเดินทาง</h3>
+                            <p>เดินทางจาก: {{ ticket['start'] }}</p>
+                            <p>ไป: {{ ticket['end'] }}</p>
+                            <p>วัน-เวลาเดินทาง: {{ ticket['date_start'].strftime('%d/%m/%Y %H:%M') }}</p>
+                            <p>จำนวนที่นั่ง: {{ticket['people']}}</p>
+                            <p>ราคาตั๋วโดยสาร: {{ ticket['price_start'] }} ต่อที่นั่ง</p>
+                            {% if ticket['select'] == 'option2' %}
+                            <hr>
+                            <p>วัน-เวลาเดินทาง ขากลับ: {{ ticket['date_return'].strftime('%d/%m/%Y %H:%M') }}</p>
+                            <!-- <p>จำนวนที่นั่ง ขากลับ: {{ ticket['people'] }}</p> -->
+                            <p>ราคาตั๋วโดยสาร ขากลับ: {{ ticket['price_end'] }} ต่อที่นั่ง</p>
+                            {% else %}
+                            {% endif %}
+                            <hr>
+                            <p>รวม: {{ (ticket['price_start']+ticket['price_end'])*ticket['people'] }} บาท</p>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
