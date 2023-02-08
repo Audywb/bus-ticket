@@ -19,13 +19,39 @@
     <div class="row mt-5">
         <div class="mt-2 d-flex justify-content-center mt-4">
             <div class="col-6 mb-4">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% block body %}{% endblock %}
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                         <h4>เพิ่มข้อมูลการเดินรถ</h4>
                         <form action="{{ url_for('addStation') }}" method="post">
                             <div class="mb-3">
                                 <label for="station" class="form-label">เพิ่มต้นทางและปลายทาง</label>
-                                <input type="text" class="form-control" id="station" name="station" placeholder="เพิ่มสถานที่">
+                                <input type="text" class="form-control" id="station" name="station"
+                                    placeholder="เพิ่มสถานที่">
+                            </div>
+                            <div class="mb-3">
+                                <label for="time" class="form-label">เวลาเดินรถ</label>
+                                <input type="time" class="form-control timePicker" id="time" name="start_time"
+                                    placeholder="เวลารถออก" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="seat" class="form-label">จำนวนที่นั่งของรถ</label>
+                                <input type="number" class="form-control" id="seat" name="seat"
+                                    placeholder="เพิ่มที่นั่ง">
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">ราคา</label>
+                                <input type="number" class="form-control" id="price" name="price"
+                                    placeholder="เพิ่มราคาต่อที่นั่ง">
                             </div>
                             <button type="submit" class="btn btn-danger">บันทึก</button>
                         </form>

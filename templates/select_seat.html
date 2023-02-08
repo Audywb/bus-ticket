@@ -49,46 +49,74 @@
                                 </div>
                             </div>
                             {% endfor %}
-                        </div>
-                        {% if option == 'option2' %}
-                        <hr>
-                        <h3 class="card-title text-center fw-bold">เลือกที่นั่งเที่ยวกลับ {{
-                            around_bus_end['station_name'] }}</h3>
-                        <p class="card-title">จำนวนผู้โดยสาร: {{ people }}</p>
-                        <!-- <p class="card-title">*กรณีเลือกที่นั่งเกินจำนวน {{ people }} ที่นั่ง
-                            ระบบจะเลือกที่นั่งด้านหน้าสุดให้อัตโนมัติ</p> -->
-                        <hr>
-                        <div class="row">
-                            <h4 class="card-title text-center text-muted">ด้านหน้ารถ</h4>
-                            {% for i in range(around_bus_end['count_seat']) %}
-                            <div class="col-2 offset-1">
-                                <div class="form-check mb-3">
-                                    {% if around_bus_end['backup_seat'][i] != i+1 %}
-                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}"
-                                        id="flexCheckDefault" disabled name="seat_end">
-                                    {% elif around_bus_end['backup_seat'][i] != 0 and i+1 in people_check_e %}
-                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}" checked name="seat_end">
-                                    {% else %}
-                                    <input class="seat form-check-input" type="checkbox" value="{{i+1}}"
-                                        id="flexCheckDefault" name="seat_end">
-                                    {% endif %}
-                                    <label class="form-check-label mt-2" for="flexCheckDefault">
-                                        {{i+1}}
-                                    </label>
+                            <div class="d-flex justify-content-center mt-2">
+                                <div class="form-check col-2">
+                                    <input class="seat form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                        disabled>
+                                    <label class="form-check-label mt-2" for="flexCheckDefault"
+                                        style="font-size: 22px;">ไม่ว่าง</label>
+                                </div>
+                                <div class="form-check col-auto">
+                                    <input class="seat form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label mt-2" for="flexCheckDefault"
+                                        style="font-size: 22px;">ว่าง</label>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
-                        {% else %}
-                        {% endif %}
-                        <hr>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg pd-2">ตกลง</button>
-                        </div>
-                    </form>
                 </div>
+                {% if option == 'option2' %}
+                <hr>
+                <h3 class="card-title text-center fw-bold">เลือกที่นั่งเที่ยวกลับ {{
+                    around_bus_end['station_name'] }}</h3>
+                <p class="card-title">จำนวนผู้โดยสาร: {{ people }}</p>
+                <!-- <p class="card-title">*กรณีเลือกที่นั่งเกินจำนวน {{ people }} ที่นั่ง
+                            ระบบจะเลือกที่นั่งด้านหน้าสุดให้อัตโนมัติ</p> -->
+                <hr>
+                <div class="row">
+                    <h4 class="card-title text-center text-muted">ด้านหน้ารถ</h4>
+                    {% for i in range(around_bus_end['count_seat']) %}
+                    <div class="col-2 offset-1">
+                        <div class="form-check mb-3">
+                            {% if around_bus_end['backup_seat'][i] != i+1 %}
+                            <input class="seat form-check-input" type="checkbox" value="{{i+1}}" id="flexCheckDefault"
+                                disabled name="seat_end">
+                            {% elif around_bus_end['backup_seat'][i] != 0 and i+1 in people_check_e %}
+                            <input class="seat form-check-input" type="checkbox" value="{{i+1}}" checked
+                                name="seat_end">
+                            {% else %}
+                            <input class="seat form-check-input" type="checkbox" value="{{i+1}}" id="flexCheckDefault"
+                                name="seat_end">
+                            {% endif %}
+                            <label class="form-check-label mt-2" for="flexCheckDefault">
+                                {{i+1}}
+                            </label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="d-flex justify-content-center mt-2">
+                        <div class="form-check col-2">
+                            <input class="seat form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                disabled>
+                            <label class="form-check-label mt-2" for="flexCheckDefault"
+                                style="font-size: 22px;">ไม่ว่าง</label>
+                        </div>
+                        <div class="form-check col-auto">
+                            <input class="seat form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label mt-2" for="flexCheckDefault"
+                                style="font-size: 22px;">ว่าง</label>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                {% endif %}
+                <hr>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg pd-2">ตกลง</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
